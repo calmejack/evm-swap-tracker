@@ -37,10 +37,6 @@ func TestLogParser_ReturnsNilForUnknownLog(t *testing.T) {
 
 func TestLogParser_RoutesV3BeforeV2(t *testing.T) {
 	cfg := config.Load()
-	lp := parser.NewLogParser(
-		adapter.NewUniswapV3Adapter(cfg),
-		adapter.NewUniswapV2Adapter(cfg, "UniswapV2"),
-	)
 
 	v3Log := types.Log{
 		Topics: []common.Hash{
@@ -59,6 +55,4 @@ func TestLogParser_RoutesV3BeforeV2(t *testing.T) {
 	if v2Adapter.CanHandle(v3Log) {
 		t.Error("V2 adapter should NOT handle a V3 log (different topic hash)")
 	}
-
-	_ = lp
 }

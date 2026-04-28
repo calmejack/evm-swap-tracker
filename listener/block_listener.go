@@ -10,7 +10,6 @@ import (
 
 	"github.com/calmejack/evm-swap-tracker/fetcher"
 	"github.com/calmejack/evm-swap-tracker/models"
-	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
@@ -109,6 +108,4 @@ func (l *BlockListener) processBlock(ctx context.Context, blockNum *big.Int) {
 		}
 	}
 
-	// Suppress "ethereum: not found" when no matching logs exist.
-	_ = ethereum.NotFound
 }
